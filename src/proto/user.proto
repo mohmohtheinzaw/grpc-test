@@ -1,0 +1,41 @@
+syntax = "proto3";
+
+package user;
+
+message Empty{
+
+}
+
+message UserById{
+    string id = 1;
+}
+
+message User {
+    string id = 1;
+    string name = 2;
+    string address = 3;
+    string phone = 4;
+}
+
+message CreateUser{
+    string name = 1;
+    string address = 2;
+    string phone = 3;
+}
+
+message getAllUsersResponse {
+    repeated User users = 1;
+ }
+
+
+service UserService {
+    rpc FindById (UserById) returns (User) {}
+
+    rpc Create(CreateUser) returns (User){}
+
+    rpc FindAll(Empty) returns (getAllUsersResponse){}
+
+    rpc Update(User) returns (User){}
+}
+
+
